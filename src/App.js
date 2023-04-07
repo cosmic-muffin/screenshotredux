@@ -84,52 +84,56 @@ return (
           textTransform: 'uppercase',
           letterSpacing: '0.2rem',
           textAlign: 'center',
-          margin: '1rem 0',
-          textShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)',
+          margin: '1rem auto',
         }}
       >
         ScreenshotRedux
       </Heading>
-      <span style={{ fontSize: '3rem' }}>&#129412;</span>
+      
+
+    <span style={{ fontSize: "3rem", }}> &#129412;</span>
 
       <View as="form" margin="3rem 0" onSubmit={createNote}>
-        <Flex direction="column" justifyContent="center" gap={4}>
+  <Flex direction="column" justifyContent="center" gap={4}>
+    
           <label htmlFor="file-upload" className="file-label">
             Click me to find screenshot &#128269; :)
           </label>
+          
           <input
             type="file"
             id="file-upload"
             onChange={identify}
-            variation="quiet"
-            required
             className="file-input"
           />
-          <span className="file-name"></span>
-
+        
           <TextField
-            name="name"
+            name="Note name"
             placeholder="What is this?"
-            label="Note Name"
-            labelHidden
             value={noteName}
             onChange={(event) => setNoteName(event.target.value)}
-            variation="quiet"
+            style={{ width: '70%' }}
             required
           />
+          
           <textarea
-            name="description"
-            placeholder="Extracted Text"
-            label="Extracted Text"
-            labelHidden
+            name="Note.description aka extracted text"
+            placeholder="Cool extracted screenshot text here"
             variation="quiet"
             value={response}
             onChange={(event) => setResponse(event.target.value)}
+            style={{ width: '70%', margin: 'auto', textAlign: 'center' }}
             required
           />
-          <Button type="submit" variation="primary">
-            Save me! &#128640;
-          </Button>
+        
+              <Button
+        type="submit"
+        variation="primary"
+        style={{ width: '70%', margin: 'auto', textAlign: 'center' }}
+      >
+        Save me! &#128640;
+      </Button>
+
         </Flex>
       </View>
 
