@@ -83,7 +83,7 @@ body {
 .file-input {
   display: none;
 }
-
+/* new file upload button */
 .file-label {
   display: inline-block;
   cursor: pointer;
@@ -92,13 +92,12 @@ body {
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   transition: all 0.2s ease;
-  width: 70%;
+  width: 40%;
   margin: 0 auto;
   text-align: center;
 }
 
 /*allows for hover effect over the screenshot file button*/
-
 .file-label:hover {
   background-color: #fff;
   color: var(--primary-color);
