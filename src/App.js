@@ -112,7 +112,7 @@ return (
             placeholder="What is this?"
             value={noteName}
             onChange={(event) => setNoteName(event.target.value)}
-            style={{ width: '50%' }}
+            style={{ width: '40%' }}
             required
           />
           
@@ -122,14 +122,14 @@ return (
             variation="quiet"
             value={response}
             onChange={(event) => setResponse(event.target.value)}
-            style={{ width: '50%', margin: 'auto', textAlign: 'center' }}
+            style={{ width: '40%', margin: 'auto', textAlign: 'center' }}
             required
           />
         
               <Button
         type="submit"
         variation="primary"
-        style={{ width: '50%', margin: 'auto', textAlign: 'center' }}
+        style={{ width: '40%', margin: 'auto', textAlign: 'center' }}
       >
         Save me! &#128640;
       </Button>
