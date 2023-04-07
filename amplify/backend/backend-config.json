@@ -53,22 +53,10 @@
       "service": "Lambda"
     }
   },
-  "parameters": {
-    "AMPLIFY_function_matchFunction_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "matchFunction"
-        }
-      ]
-    },
-    "AMPLIFY_function_matchFunction_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "matchFunction"
-        }
-      ]
+  "hosting": {
+    "S3AndCloudFront": {
+      "providerPlugin": "awscloudformation",
+      "service": "S3AndCloudFront"
     }
   },
   "predictions": {

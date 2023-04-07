@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Grid, Heading, Text, Button } from "@aws-amplify/ui-react";
 
-const Collection = ({ data, onDelete }) => {
+const MyCollection = ({ data, onDelete }) => {
   return (
     <div>
       <Heading level={2} style={{ color: 'var(--primary-color)' }}>Things to Do &#127881;</Heading>

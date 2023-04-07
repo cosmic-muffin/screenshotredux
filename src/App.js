@@ -3,13 +3,16 @@ import "./App.css";
 import "@aws-amplify/ui-react/styles.css";
 import { API , Predictions } from "aws-amplify";
 import {
+  Collection,
   Button,
+  Card,
   Flex,
   Heading,
   Text,
   TextField,
   View,
   withAuthenticator,
+  ThemeProvider,
 } from "@aws-amplify/ui-react";
 import { listNotes } from "./graphql/queries";
 import {
@@ -17,9 +20,10 @@ import {
   deleteNote as deleteNoteMutation,
 } from "./graphql/mutations";
 
+
 const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
-  const [response, setResponse] = useState("Please upload a screenshot :)");
+  const [response, setResponse] = useState("");
   const [noteName, setNoteName] = useState("");
   
   useEffect(() => {
@@ -47,7 +51,8 @@ const App = ({ signOut }) => {
     const form = new FormData(event.target);
     const data = {
       name: noteName,
-      description: form.get("description"),
+      description: response,
+      //description: form.get("description"),
     };
     await API.graphql({
       query: createNoteMutation,
@@ -66,69 +71,115 @@ const App = ({ signOut }) => {
       variables: { input: { id } },
     });
   }
+  
+return (
+  <ThemeProvider>
+    <View className="App" style={{ backgroundColor: 'var(--background-color)' }}>
+      <Heading
+        level={1}
+        style={{
+          color: 'var(--primary-color)',
+          fontFamily: 'Montserrat, sans-serif',
+          fontWeight: 'bold',
+          textTransform: 'uppercase',
+          letterSpacing: '0.2rem',
+          textAlign: 'center',
+          margin: '1rem 0',
+          textShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)',
+        }}
+      >
+        ScreenshotRedux
+      </Heading>
+      <span style={{ fontSize: '3rem' }}>&#129412;</span>
 
-  return (
-    <View className="App">
-      <h1>My Screenshot App</h1>
       <View as="form" margin="3rem 0" onSubmit={createNote}>
-        <Flex direction="column" justifyContent="center">
+        <Flex direction="column" justifyContent="center" gap={4}>
+          <label htmlFor="file-upload" className="file-label">
+            Click me to find screenshot &#128269; :)
+          </label>
           <input
-            type="file" onChange={identify}
+            type="file"
+            id="file-upload"
+            onChange={identify}
+            variation="quiet"
+            required
+            className="file-input"
+          />
+          <span className="file-name"></span>
+
+          <TextField
             name="name"
-            placeholder="Note Name"
+            placeholder="What is this?"
             label="Note Name"
             labelHidden
+            value={noteName}
+            onChange={(event) => setNoteName(event.target.value)}
             variation="quiet"
             required
           />
-            <TextField
-          name="name"
-          placeholder="Note Name"
-         label="Note Name"
-          labelHidden
-          value={noteName}
-          onChange={(event) => setNoteName(event.target.value)}
-          variation="quiet"
-          required
-          />
-
-            <textarea
+          <textarea
             name="description"
             placeholder="Extracted Text"
             label="Extracted Text"
             labelHidden
             variation="quiet"
-            value={response} // set the value of the input box to the state variable
-            onChange={(event) => setResponse(event.target.value)} // update the state variable when the input is edited
+            value={response}
+            onChange={(event) => setResponse(event.target.value)}
             required
           />
           <Button type="submit" variation="primary">
-            Upload screenshot
+            Save me! &#128640;
           </Button>
         </Flex>
       </View>
-      <h2>Current Notes</h2>
+
+      <Heading level={2} style={{ color: 'var(--primary-color)' }}>
+        &#127881;Things to Do &#127881;
+      </Heading>
+
       <View margin="3rem 0">
-        {notes.map((note) => (
-          <Flex
-            key={note.id || note.name}
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Text as="strong" fontWeight={700}>
-              {note.name}
-            </Text>
-            <Text as="span">{note.description}</Text>
-            <Button variation="link" onClick={() => deleteNote(note)}>
-              Delete note
-            </Button>
-          </Flex>
-        ))}
+        <Collection
+          type="grid"
+          items={notes}
+          templateColumns="repeat(auto-fit, minmax(300px, 1fr))"
+        >
+          {(note, index) => (
+            <Card
+              key={note.id || note.name}
+              style={{
+                maxWidth: 300,
+                backgroundColor: 'white',
+                borderRadius: 8,
+                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+                minHeight: 'auto',
+                margin: '10px',
+              }}
+            >
+              <View padding={3}>
+                <Heading level={2} style={{ marginBottom: 0 }}>
+                  {note.name}
+                </Heading>
+                <Text style={{ color: '#888', fontSize: 14 }}>
+                  {note.description}
+                </Text>
+                <Button
+                  variation="primary"
+                  onClick={() => deleteNote(note)}
+                  style={{ marginTop: 10 }}
+                >
+                  Delete note
+                </Button>
+              </View>
+            </Card>
+          )}
+        </Collection>
       </View>
-      <Button onClick={signOut}>Sign Out</Button>
+
+      <Button onClick={signOut} className="orangebutton">Sign Out</Button>
     </View>
-  );
+  </ThemeProvider>
+);
 };
+
 
 export default withAuthenticator(App);
