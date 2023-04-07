@@ -91,7 +91,7 @@ return (
       </Heading>
       
 
-    <span style={{ fontSize: "3rem", }}> &#129412;</span>
+    <span style={{ fontSize: "4rem", }}> &#129412;</span>
 
       <View as="form" margin="3rem 0" onSubmit={createNote}>
   <Flex direction="column" justifyContent="center" gap={4}>
@@ -112,7 +112,7 @@ return (
             placeholder="What is this?"
             value={noteName}
             onChange={(event) => setNoteName(event.target.value)}
-            style={{ width: '30%' }}
+            style={{ width: '35%' }}
             required
           />
           
@@ -122,14 +122,14 @@ return (
             variation="quiet"
             value={response}
             onChange={(event) => setResponse(event.target.value)}
-            style={{ width: '30%', margin: 'auto', textAlign: 'center' }}
+            style={{ width: '35%', margin: 'auto', textAlign: 'center' }}
             required
           />
         
               <Button
         type="submit"
         variation="primary"
-        style={{ width: '30%', margin: 'auto', textAlign: 'center' }}
+        style={{ width: '35%', margin: 'auto', textAlign: 'center' }}
       >
         Save me! &#128640;
       </Button>
