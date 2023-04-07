@@ -97,7 +97,7 @@ return (
   <Flex direction="column" justifyContent="center" gap={4}>
     
           <label htmlFor="file-upload" className="file-label">
-            Click me to find screenshot &#128269; :)
+            Click me to find screenshot &#128269;
           </label>
           
           <input
@@ -112,7 +112,7 @@ return (
             placeholder="What is this?"
             value={noteName}
             onChange={(event) => setNoteName(event.target.value)}
-            style={{ width: '40%' }}
+            style={{ width: '30%' }}
             required
           />
           
@@ -122,14 +122,14 @@ return (
             variation="quiet"
             value={response}
             onChange={(event) => setResponse(event.target.value)}
-            style={{ width: '40%', margin: 'auto', textAlign: 'center' }}
+            style={{ width: '30%', margin: 'auto', textAlign: 'center' }}
             required
           />
         
               <Button
         type="submit"
         variation="primary"
-        style={{ width: '40%', margin: 'auto', textAlign: 'center' }}
+        style={{ width: '30%', margin: 'auto', textAlign: 'center' }}
       >
         Save me! &#128640;
       </Button>
