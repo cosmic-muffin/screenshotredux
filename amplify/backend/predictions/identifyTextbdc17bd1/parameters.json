@@ -9,7 +9,7 @@
     },
     "adminAuthProtected": "DISALLOW",
     "adminGuestProtected": "DISALLOW",
-    "identifyType": "identifyText"
+    "identifyType": "identifyText",
     "identifyDoc": true,
     "access": "auth",
     "format": "ALL"

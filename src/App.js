@@ -33,11 +33,21 @@ const App = ({ signOut }) => {
   async function identify(event) {
     setResponse("Finding text...");
     const { target: { files }} = event;
-    const file = files[0];
+    const [file,] = files || [];
+    //const file = files[0];
     const data = await Predictions.identify({
-      text: { source: { file }, format: "PLAIN"} // PLAIN, FORM, TABLE, ALL
-    }) 
-    setResponse(data.text.fullText)
+      text: { 
+	source: { 
+	  file 
+	}, 
+	format: "PLAIN",
+      }
+	    
+    }).then(({text: { fullText }}) => {
+      setResponse(fullText)
+    })
+     .catch(err => setResponse(JSON.stringify(err, null, 2)))
+    //setResponse(data.text.fullText)
   }
   
   async function fetchNotes() {
